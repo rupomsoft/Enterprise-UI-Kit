@@ -14,8 +14,8 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "ACRU Dashboard",
-  description: "Financial dashboard with balance overview, cards, and analytics",
+  title: "Enterprise UI Kit",
+  description: "Lightweight, AI-friendly Dashboard UI Kit. Reusable components with documentation and code examples.",
 };
 
 export default function RootLayout({

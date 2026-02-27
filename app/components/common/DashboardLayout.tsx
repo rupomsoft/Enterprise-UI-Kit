@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { Bell, Settings } from "lucide-react";
 import { Sidebar, DashboardHeader } from "@/app/components/ui";
-import type { SidebarNavItem, SidebarNavLink, SidebarLogo } from "@/app/components/ui";
+import type { SidebarLogo } from "@/app/components/ui";
 import type { HeaderPrimaryAction, HeaderTrailingAction } from "@/app/components/ui/DashboardHeader";
+import { mainNavItems, bottomNavItems } from "@/app/config/sidebarNav";
 
 const DEFAULT_USER = { name: "Michael Johnson", email: "m.johnson@finex.com", avatarInitials: "MJ" };
 
@@ -18,6 +19,8 @@ const DEFAULT_TRAILING_ACTIONS: HeaderTrailingAction[] = [
   { icon: Settings, ariaLabel: "Settings", href: "/settings" },
 ];
 
+const LOGO: SidebarLogo = { full: "Enterprise UI", short: "EU" };
+
 export interface DashboardLayoutProps {
   children: React.ReactNode;
 }
@@ -25,47 +28,12 @@ export interface DashboardLayoutProps {
 export function DashboardLayout({ children }: DashboardLayoutProps) {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
-  const mainNavItems: SidebarNavItem[] = [
-    { href: "/", label: "UI Kit", icon: "Layers" },
-    { href: "/dashboard", label: "Dashboard", icon: "LayoutDashboard" },
-    { href: "/accounts", label: "Accounts", icon: "Users" },
-    {
-      label: "Transactions",
-      icon: "ArrowLeftRight",
-      children: [
-        { href: "/transactions/history", label: "History", badge: 19 },
-        { href: "/transactions/integration", label: "Integration" },
-        { href: "/transactions/reports", label: "Reports" },
-      ],
-    },
-    {
-      label: "Table",
-      icon: "Table2",
-      children: [
-        { href: "/table/simple", label: "Simple Tables" },
-        { href: "/table/data-table", label: "Data Table" },
-        { href: "/table/js-grid", label: "JS Grid" },
-      ],
-    },
-    { href: "/cash-flow", label: "Cash flow", icon: "Wallet" },
-    { href: "/budget", label: "Budget", icon: "PiggyBank" },
-    { href: "/investments", label: "Investments", icon: "TrendingUp" },
-  ];
-
-  const bottomNavItems: SidebarNavLink[] = [
-    { href: "/learning", label: "Learning center", icon: "BookOpen" },
-    { href: "/support", label: "Support", icon: "Headphones" },
-    
-  ];
-
-  const logo: SidebarLogo = { full: "Enterprise UI", short: "EU" };
-
   return (
     <div className="flex min-h-screen bg-[#FAFAFA] dark:bg-gray-950">
       <Sidebar
         mainNavItems={mainNavItems}
         bottomNavItems={bottomNavItems}
-        logo={logo}
+        logo={LOGO}
         collapsed={sidebarCollapsed}
         onCollapse={() => setSidebarCollapsed((c) => !c)}
       />

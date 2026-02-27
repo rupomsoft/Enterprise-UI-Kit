@@ -44,6 +44,8 @@ export { PieChartRechart } from "./PieChartRechart";
 export type { PieChartRechartProps } from "./PieChartRechart";
 export { DoughnutChartRechart } from "./DoughnutChartRechart";
 export type { DoughnutChartRechartProps } from "./DoughnutChartRechart";
+export { CodePad } from "./CodePad";
+export type { CodePadProps } from "./CodePad";
 export { Checkbox } from "./Checkbox";
 export type { CheckboxProps } from "./Checkbox";
 export { Combobox } from "./Combobox";

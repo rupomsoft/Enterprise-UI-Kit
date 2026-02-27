@@ -45,6 +45,7 @@ import { StepperSection } from "./sections/StepperSection";
 import { ToggleButtonSection } from "./sections/ToggleButtonSection";
 import { TooltipSection } from "./sections/TooltipSection";
 import { FileUploadSection } from "./sections/FileUploadSection";
+import { CodePadSection } from "./sections/CodePadSection";
 import { TypographySection } from "./sections/TypographySection";
 import { RadioGroupSection } from "./sections/RadioGroupSection";
 import { AvatarSkeletonSection } from "./sections/AvatarSkeletonSection";
@@ -183,6 +184,8 @@ export function UIKitShowcase() {
       <DoughnutChartSection />
       <Divider />
       <TypographySection />
+      <Divider />
+      <CodePadSection />
       <Divider />
       <RadioGroupSection />
       <Divider />
