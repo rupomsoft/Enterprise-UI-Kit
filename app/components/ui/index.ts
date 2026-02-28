@@ -225,6 +225,8 @@ export { Textarea } from "./Textarea";
 export type { TextareaProps } from "./Textarea";
 export { CardTimeline } from "./CardTimeline";
 export type { CardTimelineItem, CardTimelineItemState, CardTimelineProps } from "./CardTimeline";
+export { HorizontalTimeline } from "./HorizontalTimeline";
+export type { HorizontalTimelineItem, HorizontalTimelineProps } from "./HorizontalTimeline";
 export { ClassicTimeline } from "./ClassicTimeline";
 export type { ClassicTimelineItem, ClassicTimelineProps } from "./ClassicTimeline";
 export { Toast } from "./Toast";

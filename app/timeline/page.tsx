@@ -8,8 +8,18 @@ import { Divider } from "@/app/components/ui";
 const HOW_TO_USE_ENTRIES = [
   {
     label: "Import",
-    code: `import { ClassicTimeline, CardTimeline } from "@/app/components/ui";
-import type { ClassicTimelineItem, CardTimelineItem } from "@/app/components/ui";`,
+    code: `import { ClassicTimeline, CardTimeline, HorizontalTimeline } from "@/app/components/ui";
+import type { ClassicTimelineItem, CardTimelineItem, HorizontalTimelineItem } from "@/app/components/ui";`,
+    language: "tsx",
+  },
+  {
+    label: "HorizontalTimeline",
+    code: `const items: HorizontalTimelineItem[] = [
+  { id: "1", tag: "Start", title: "Kickoff", description: "Project brief.", time: "09:00" },
+  { id: "2", tag: "Build", title: "Prototype", description: "Wireframes.", time: "14:00" },
+];
+
+<HorizontalTimeline title="Timeline" items={items} />`,
     language: "tsx",
   },
   {
@@ -41,7 +51,7 @@ export default function TimelinePage() {
       <TimelineSection />
       <Divider />
       <HowToUseSection
-        description="Use ClassicTimeline (simple list) or CardTimeline (cards with completed/active/pending states). CardTimeline items need state and optional statusLabel."
+        description="Use HorizontalTimeline (horizontal + arrow slides), ClassicTimeline (vertical list), or CardTimeline (cards with states). HorizontalTimeline items support tag, title, description, time."
         entries={HOW_TO_USE_ENTRIES}
       />
     </DocPageLayout>
