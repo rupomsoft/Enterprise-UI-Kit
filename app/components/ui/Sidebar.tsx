@@ -118,38 +118,47 @@ export function Sidebar({
                           {item.label}
                         </span>
                         <ChevronDown
-                          className={`w-4 h-4 shrink-0 text-[#1A1A1A] dark:text-gray-200 transition-transform ${
+                          className={`w-4 h-4 shrink-0 text-[#1A1A1A] dark:text-gray-200 transition-transform duration-[250ms] ease-out ${
                             openMenus[item.label] ? "rotate-180" : ""
                           }`}
                         />
                       </>
                     )}
                   </button>
-                  {!collapsed && openMenus[item.label] && item.children && (
-                    <ul className="ml-5 mt-0.5 space-y-0.5 border-l border-gray-200 dark:border-gray-700 pl-3 py-1">
-                      {item.children.map((child) => {
-                        const childActive = isActive(child.href);
-                        return (
-                          <li key={child.label}>
-                            <Link
-                              href={child.href}
-                              className={`flex items-center gap-2 px-2 py-2 rounded-[8px] text-sm font-medium ${
-                                childActive
-                                  ? "bg-[#F0F0F0] dark:bg-gray-800 text-[#1A1A1A] dark:text-gray-100 font-semibold"
-                                  : "text-[#1A1A1A] dark:text-gray-200 hover:bg-[#F0F0F0] dark:hover:bg-gray-800"
-                              }`}
-                            >
-                              <span>{child.label}</span>
-                              {child.badge !== undefined && (
-                                <span className="ml-auto bg-[#1A1A1A] dark:bg-gray-200 text-white dark:text-gray-900 text-xs font-medium min-w-[20px] h-5 px-1.5 rounded-full flex items-center justify-center">
-                                  {child.badge}
-                                </span>
-                              )}
-                            </Link>
-                          </li>
-                        );
-                      })}
-                    </ul>
+                  {!collapsed && item.children && (
+                    <div
+                      className="grid transition-[grid-template-rows] duration-[250ms] ease-out"
+                      style={{
+                        gridTemplateRows: openMenus[item.label] ? "1fr" : "0fr",
+                      }}
+                    >
+                      <div className="min-h-0 overflow-hidden">
+                        <ul className="ml-5 mt-0.5 space-y-0.5 border-l border-gray-200 dark:border-gray-700 pl-3 py-1">
+                          {item.children.map((child) => {
+                            const childActive = isActive(child.href);
+                            return (
+                              <li key={child.label}>
+                                <Link
+                                  href={child.href}
+                                  className={`flex items-center gap-2 px-2 py-2 rounded-[8px] text-sm font-medium ${
+                                    childActive
+                                      ? "bg-[#F0F0F0] dark:bg-gray-800 text-[#1A1A1A] dark:text-gray-100 font-semibold"
+                                      : "text-[#1A1A1A] dark:text-gray-200 hover:bg-[#F0F0F0] dark:hover:bg-gray-800"
+                                  }`}
+                                >
+                                  <span>{child.label}</span>
+                                  {child.badge !== undefined && (
+                                    <span className="ml-auto bg-[#1A1A1A] dark:bg-gray-200 text-white dark:text-gray-900 text-xs font-medium min-w-[20px] h-5 px-1.5 rounded-full flex items-center justify-center">
+                                      {child.badge}
+                                    </span>
+                                  )}
+                                </Link>
+                              </li>
+                            );
+                          })}
+                        </ul>
+                      </div>
+                    </div>
                   )}
                 </li>
               );
