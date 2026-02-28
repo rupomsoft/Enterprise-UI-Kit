@@ -27,16 +27,21 @@ export function Accordion({ items, openId, onOpenChange }: AccordionProps) {
           >
             {item.title}
             <ChevronDown
-              className={`w-4 h-4 text-gray-500 transition-transform ${
+              className={`w-4 h-4 text-gray-500 shrink-0 transition-transform duration-200 ease-out ${
                 openId === item.id ? "rotate-180" : ""
               }`}
             />
           </button>
-          {openId === item.id && (
-            <div className="px-4 pb-3 text-sm text-gray-500 dark:text-gray-400">
-              {item.content}
+          <div
+            className="grid transition-[grid-template-rows] duration-200 ease-out"
+            style={{ gridTemplateRows: openId === item.id ? "1fr" : "0fr" }}
+          >
+            <div className="min-h-0 overflow-hidden">
+              <div className="px-4 pb-3 text-sm text-gray-500 dark:text-gray-400">
+                {item.content}
+              </div>
             </div>
-          )}
+          </div>
         </div>
       ))}
     </div>

@@ -1,7 +1,13 @@
 export { Accordion } from "./Accordion";
+export type { AccordionItem, AccordionProps } from "./Accordion";
+export { AccordionCard } from "./AccordionCard";
+export type { AccordionCardItem, AccordionCardProps } from "./AccordionCard";
+export { AccordionFilled } from "./AccordionFilled";
+export type { AccordionFilledItem, AccordionFilledProps } from "./AccordionFilled";
+export { AccordionNumbered } from "./AccordionNumbered";
+export type { AccordionNumberedItem, AccordionNumberedProps } from "./AccordionNumbered";
 export { ActionCard } from "./ActionCard";
 export type { ActionCardProps } from "./ActionCard";
-export type { AccordionItem, AccordionProps } from "./Accordion";
 export { Alert } from "./Alert";
 export type { AlertProps } from "./Alert";
 export { AlertCard } from "./AlertCard";
