@@ -141,13 +141,14 @@ export type {
 export {
   Skeleton,
   SkeletonBlock,
+  CircularSkeleton,
   AvatarSkeleton,
   CardSkeleton,
   TextSkeleton,
   FormSkeleton,
   TableSkeleton,
 } from "./Skeleton";
-export type { SkeletonProps } from "./Skeleton";
+export type { SkeletonProps, CircularSkeletonProps } from "./Skeleton";
 export { Slider } from "./Slider";
 export type { SliderProps } from "./Slider";
 export { SquareFlipSpinner } from "./SquareFlipSpinner";

@@ -34,6 +34,20 @@ export function SkeletonBlock({ lines = 3 }: { lines?: number }) {
 
 const sizeClass = { sm: "w-8 h-8", md: "w-10 h-10", lg: "w-12 h-12" };
 
+export interface CircularSkeletonProps {
+  size?: "sm" | "md" | "lg";
+  className?: string;
+}
+
+/** Circular (round) skeleton placeholder. Use for avatars, icons, or any circular loading state. */
+export function CircularSkeleton({ size = "md", className = "" }: CircularSkeletonProps) {
+  return (
+    <Skeleton
+      className={`rounded-full shrink-0 ${sizeClass[size]} ${className}`.trim()}
+    />
+  );
+}
+
 export function AvatarSkeleton({ size = "md" }: { size?: "sm" | "md" | "lg" }) {
   return (
     <Skeleton className={`rounded-full shrink-0 ${sizeClass[size]}`} />
