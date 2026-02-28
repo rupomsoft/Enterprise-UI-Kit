@@ -262,77 +262,77 @@ export default function POSPage() {
         <div className="flex-1 flex flex-col sm:flex-row min-h-0 w-full pb-16 sm:pb-0">
           <div className="flex-1 min-w-0 min-h-0 flex flex-col order-1">
             <PosProductList
-            data={filteredProducts}
-            getKey={(p) => p.id}
-            renderItem={(p, context) => (
-              <PosProductCard
-                id={p.id}
-                name={p.name}
-                price={p.price}
-                stock={p.stock}
-                image={PLACEHOLDER_IMAGE}
-                onAddToCart={() => addToCart(p.id, p.name, p.price, DEFAULT_VARIANT)}
-                currency={CURRENCY}
-                listView={context?.listView}
-              />
-            )}
-            columns={5}
-            rowHeight={240}
-            rowGap={8}
+              data={filteredProducts}
+              getKey={(p) => p.id}
+              renderItem={(p, context) => (
+                <PosProductCard
+                  id={p.id}
+                  name={p.name}
+                  price={p.price}
+                  stock={p.stock}
+                  image={PLACEHOLDER_IMAGE}
+                  onAddToCart={() => addToCart(p.id, p.name, p.price, DEFAULT_VARIANT)}
+                  currency={CURRENCY}
+                  listView={context?.listView}
+                />
+              )}
+              columns={5}
+              rowHeight={240}
+              rowGap={8}
               height="90vh"
             />
           </div>
 
           {/* Cart sidebar: hidden on mobile (use sticky button + sheet instead), visible sm+ */}
           <aside className="hidden sm:flex w-full sm:w-[340px] md:w-[380px] lg:w-[400px] sm:h-[90dvh] sm:max-h-[90dvh] sm:min-h-0 sm:max-h-none shrink-0 sm:border-l border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 flex-col overflow-hidden order-2 safe-area-bottom-with-padding">
-          <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-3 sm:p-4 touch-manipulation">
-            {cartListContent}
-          </div>
-          <div className="shrink-0 px-3 pt-3 sm:px-4 sm:pt-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 space-y-2">
-            {orderFormContent}
-          </div>
-        </aside>
-      </div>
+            <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-3 sm:p-4 touch-manipulation">
+              {cartListContent}
+            </div>
+            <div className="shrink-0 px-3 pt-3 sm:px-4 sm:pt-4 border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900 space-y-2">
+              {orderFormContent}
+            </div>
+          </aside>
+        </div>
 
-      {/* Mobile: sticky Cart button at bottom; opens full-screen cart bottom sheet */}
-      <button
-        type="button"
-        onClick={() => setCartSheetOpen(true)}
-        className="sm:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between gap-3 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 font-semibold shadow-[0_-2px_10px_rgba(0,0,0,0.1)] safe-area-bottom-with-padding touch-manipulation min-h-[56px]"
-        aria-label="Open cart"
-      >
-        <span className="flex items-center gap-2">
-          <ShoppingCart className="w-5 h-5 shrink-0" />
-          <span>Cart</span>
+        {/* Mobile: sticky Cart button at bottom; opens full-screen cart bottom sheet */}
+        <button
+          type="button"
+          onClick={() => setCartSheetOpen(true)}
+          className="sm:hidden fixed bottom-0 left-0 right-0 z-30 flex items-center justify-between gap-3 px-4 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 font-semibold shadow-[0_-2px_10px_rgba(0,0,0,0.1)] safe-area-bottom-with-padding touch-manipulation min-h-[56px]"
+          aria-label="Open cart"
+        >
+          <span className="flex items-center gap-2">
+            <ShoppingCart className="w-5 h-5 shrink-0" />
+            <span>Cart</span>
+            {cart.length > 0 && (
+              <span className="inline-flex items-center justify-center min-w-[22px] h-[22px] rounded-full bg-white/20 dark:bg-gray-900/20 text-sm">
+                {cart.length}
+              </span>
+            )}
+          </span>
           {cart.length > 0 && (
-            <span className="inline-flex items-center justify-center min-w-[22px] h-[22px] rounded-full bg-white/20 dark:bg-gray-900/20 text-sm">
-              {cart.length}
+            <span className="tabular-nums">
+              {CURRENCY}{grandTotal.toFixed(2)}
             </span>
           )}
-        </span>
-        {cart.length > 0 && (
-          <span className="tabular-nums">
-            {CURRENCY}{grandTotal.toFixed(2)}
-          </span>
-        )}
-      </button>
+        </button>
 
-      <Sheet
-        open={cartSheetOpen}
-        onClose={() => setCartSheetOpen(false)}
-        title="Cart & Order"
-        position="bottom"
-        maxHeight="90dvh"
-      >
-        <div className="flex flex-col h-[75dvh] min-h-0 bg-white dark:bg-gray-900 -mx-4 -mt-2">
-          <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-4 pb-2 touch-manipulation">
-            {cartListContent}
+        <Sheet
+          open={cartSheetOpen}
+          onClose={() => setCartSheetOpen(false)}
+          title="Cart & Order"
+          position="bottom"
+          maxHeight="90dvh"
+        >
+          <div className="flex flex-col h-[75dvh] min-h-0 bg-white dark:bg-gray-900 -mx-4 -mt-2">
+            <div className="flex-1 min-h-0 overflow-y-auto overscroll-contain p-4 pb-2 touch-manipulation">
+              {cartListContent}
+            </div>
+            <div className="shrink-0 px-4 pt-3 pb-4 border-t border-gray-200 dark:border-gray-800 space-y-2 safe-area-bottom-with-padding bg-white dark:bg-gray-900">
+              {orderFormContent}
+            </div>
           </div>
-          <div className="shrink-0 px-4 pt-3 pb-4 border-t border-gray-200 dark:border-gray-800 space-y-2 safe-area-bottom-with-padding bg-white dark:bg-gray-900">
-            {orderFormContent}
-          </div>
-        </div>
-      </Sheet>
+        </Sheet>
       </div>
     </DashboardLayout>
   );
