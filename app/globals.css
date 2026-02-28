@@ -35,9 +35,28 @@ body {
 }
 
 /* Responsive safe areas and touch targets */
+.safe-area-bottom-with-padding {
+  padding-bottom: 1.5rem;
+}
+@media (min-width: 640px) {
+  .safe-area-bottom-with-padding {
+    padding-bottom: 2rem;
+  }
+}
 @supports (padding: env(safe-area-inset-bottom)) {
   .safe-area-bottom {
     padding-bottom: env(safe-area-inset-bottom);
+  }
+  .safe-area-bottom-with-padding {
+    padding-bottom: max(1.5rem, env(safe-area-inset-bottom, 0px));
+  }
+  @media (min-width: 640px) {
+    .safe-area-bottom-with-padding {
+      padding-bottom: max(2rem, env(safe-area-inset-bottom, 0px));
+    }
+  }
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
   }
   .safe-area-inset {
     padding-left: env(safe-area-inset-left);

@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useLayoutEffect, useMemo, useCallback } from "react";
 import { ChevronDown, Search } from "lucide-react";
+import { cn } from "@/app/lib/utils";
 import { inputBase, labelBase } from "./styles";
 
 const ITEM_HEIGHT_PX = 40;
@@ -19,6 +20,7 @@ export interface SearchableDropdownProps {
   onChange?: (value: string) => void;
   placeholder?: string;
   label?: string;
+  labelClassName?: string;
   id?: string;
   className?: string;
   disabled?: boolean;
@@ -32,6 +34,7 @@ export function SearchableDropdown({
   onChange,
   placeholder = "Select...",
   label,
+  labelClassName,
   id: idProp,
   className = "",
   disabled = false,
@@ -195,7 +198,7 @@ export function SearchableDropdown({
       className={`space-y-1.5 min-w-0 ${className}`.trim()}
     >
       {label && inputId && (
-        <label htmlFor={inputId} className={labelBase}>
+        <label htmlFor={inputId} className={cn(labelBase, labelClassName)}>
           {label}
         </label>
       )}

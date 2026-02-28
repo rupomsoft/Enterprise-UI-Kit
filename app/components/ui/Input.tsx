@@ -6,12 +6,14 @@ import { inputBase, labelBase, inputErrorClass, hintClass, errorClass } from "./
 
 export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
   label?: string;
+  labelClassName?: string;
   error?: string;
   hint?: string;
 }
 
 export function Input({
   label,
+  labelClassName,
   error,
   hint,
   className,
@@ -27,7 +29,7 @@ export function Input({
   return (
     <div className="space-y-1.5 min-w-0">
       {label && (
-        <label htmlFor={inputId} className={labelBase}>
+        <label htmlFor={inputId} className={cn(labelBase, labelClassName)}>
           {label}
         </label>
       )}

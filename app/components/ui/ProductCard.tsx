@@ -28,6 +28,8 @@ export interface ProductCardProps {
   badge?: ReactNode;
   /** Optional footer row below action (e.g. rating + Quick view) */
   footer?: ReactNode;
+  /** Aspect ratio of the image area (default aspect-square). Use aspect-video or aspect-[4/3] for shorter image. */
+  imageAspect?: string;
   className?: string;
 }
 
@@ -41,11 +43,12 @@ export function ProductCard({
   action,
   badge,
   footer,
+  imageAspect = "aspect-square",
   className = "",
 }: ProductCardProps) {
   const content = (
     <>
-      <div className="relative aspect-square w-full overflow-hidden rounded-t-[10px] bg-gray-100 dark:bg-gray-700">
+      <div className={`relative ${imageAspect} w-full overflow-hidden rounded-t-[10px] bg-gray-100 dark:bg-gray-700`}>
         <div className="absolute inset-0 [&>img]:h-full [&>img]:w-full [&>img]:object-cover">
           {image}
         </div>

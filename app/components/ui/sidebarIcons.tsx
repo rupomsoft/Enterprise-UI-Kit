@@ -45,12 +45,14 @@ import {
   Info,
   Type,
   Code,
+  ShoppingCart,
   type LucideIcon,
 } from "lucide-react";
 
 /** Map of icon name (string) to Lucide icon component for JSON-driven sidebar nav */
 export const SIDEBAR_ICON_MAP: Record<string, LucideIcon> = {
   LayoutDashboard,
+  ShoppingCart,
   Layers,
   Square,
   Users,

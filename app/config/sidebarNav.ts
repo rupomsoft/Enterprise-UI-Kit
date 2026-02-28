@@ -38,6 +38,7 @@ export const mainNavItems: SidebarNavItem[] = [
     ],
   },
   { href: "/dashboard", label: "Dashboard", icon: "LayoutDashboard" },
+  { href: "/pos", label: "POS", icon: "ShoppingCart" },
   { href: "/accounts", label: "Accounts", icon: "Users" },
   {
     label: "Transactions",
