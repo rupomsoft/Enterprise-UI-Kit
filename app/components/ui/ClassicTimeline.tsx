@@ -3,17 +3,17 @@
 import { cn } from "@/app/lib/utils";
 import { hintClass } from "./styles";
 
-export interface TimelineItem {
+export interface ClassicTimelineItem {
   time: string;
   title: string;
   desc?: string;
 }
 
-export interface TimelineProps {
-  items: TimelineItem[];
+export interface ClassicTimelineProps {
+  items: ClassicTimelineItem[];
 }
 
-export function Timeline({ items }: TimelineProps) {
+export function ClassicTimeline({ items }: ClassicTimelineProps) {
   return (
     <div className="space-y-4">
       {items.map((item, i) => (
