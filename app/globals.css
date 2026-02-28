@@ -143,3 +143,80 @@ body {
 .dark .ProseMirror p.is-editor-empty:first-child::before {
   color: var(--color-gray-500, #6b7280);
 }
+
+/* Square flip spinner: 3D flip on two axes */
+@keyframes square-flip {
+  from {
+    transform: perspective(120px) rotateX(0) rotateY(0);
+  }
+  to {
+    transform: perspective(120px) rotateX(360deg) rotateY(360deg);
+  }
+}
+.animate-square-flip {
+  animation: square-flip 1.2s ease-in-out infinite;
+}
+
+/* Pulse dot (DotSpinner) */
+@keyframes pulse-dot {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Bar scale wave (BarSpinner) */
+@keyframes bar-scale {
+  0%, 100% {
+    transform: scaleY(0.5);
+  }
+  50% {
+    transform: scaleY(1);
+  }
+}
+
+/* Segment fade (RingFadeSpinner) */
+@keyframes segment-fade {
+  0%, 100% {
+    opacity: 0.2;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+/* Bounce dot (BounceSpinner) */
+@keyframes bounce-dot {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-100%);
+  }
+}
+
+/* Clock hand (ClockSpinner) */
+@keyframes clock-hand {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Ripple expand (RippleSpinner) */
+@keyframes ripple-expand {
+  0% {
+    transform: scale(0.3);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}

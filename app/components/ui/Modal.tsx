@@ -2,9 +2,11 @@
 
 import { cn } from "@/app/lib/utils";
 import { X } from "lucide-react";
-import { type ReactNode, useMemo } from "react";
+import { type ReactNode, useMemo, useState, useEffect, useLayoutEffect, useRef } from "react";
 import { cardClass } from "./styles";
 import { Button } from "./Button";
+
+const ANIM_DURATION_MS = 200;
 
 export type ModalSize =
   | "sm"
@@ -69,13 +71,52 @@ export function Modal({
   footer,
   size = "md",
 }: ModalProps) {
+  const [exiting, setExiting] = useState(false);
+  const [exitingVisible, setExitingVisible] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const prevOpenRef = useRef(open);
+
+  useEffect(() => {
+    if (open) {
+      setExiting(false);
+      setExitingVisible(false);
+      const id = requestAnimationFrame(() => setMounted(true));
+      return () => cancelAnimationFrame(id);
+    }
+  }, [open]);
+
+  useLayoutEffect(() => {
+    if (prevOpenRef.current && !open) {
+      setExiting(true);
+      setExitingVisible(true);
+    }
+    prevOpenRef.current = open;
+  }, [open]);
+
+  useLayoutEffect(() => {
+    if (!exiting) return;
+    const raf = requestAnimationFrame(() => setExitingVisible(false));
+    return () => cancelAnimationFrame(raf);
+  }, [exiting]);
+
+  useEffect(() => {
+    if (!exiting) return;
+    const id = setTimeout(() => {
+      setExiting(false);
+      setMounted(false);
+    }, ANIM_DURATION_MS);
+    return () => clearTimeout(id);
+  }, [exiting]);
+
   const defaultFooter = useMemo(
     () => <ModalDefaultFooter onClose={onClose} />,
     [onClose]
   );
   const isFullScreen = size === "full-screen";
+  const visible = open || exiting;
+  const showFull = (open && mounted && !exiting) || (exiting && exitingVisible);
 
-  if (!open) return null;
+  if (!visible) return null;
 
   return (
     <div
@@ -88,18 +129,22 @@ export function Modal({
       aria-labelledby="modal-title"
     >
       <div
-        className="absolute inset-0 bg-black/50 dark:bg-black/60"
+        className={cn(
+          "absolute inset-0 bg-black/50 dark:bg-black/60 transition-opacity duration-200 ease-out",
+          showFull ? "opacity-100" : "opacity-0"
+        )}
         onClick={onClose}
         aria-hidden
       />
       <div
         className={cn(
-          "relative w-full overflow-y-auto min-w-0",
+          "relative w-full overflow-y-auto min-w-0 transition-[transform,opacity] duration-200 ease-out",
           cardClass,
           modalSizeClasses[size],
           isFullScreen
             ? "max-h-[90vh] sm:max-h-none rounded-t-[10px] sm:rounded-none"
-            : "max-h-[90vh] sm:max-h-none sm:rounded-[10px] rounded-t-[10px] mx-auto"
+            : "max-h-[90vh] sm:max-h-none sm:rounded-[10px] rounded-t-[10px] mx-auto",
+          showFull ? "scale-100 opacity-100" : "scale-95 opacity-0"
         )}
         onClick={(e) => e.stopPropagation()}
       >
